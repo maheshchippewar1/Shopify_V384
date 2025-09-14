@@ -1,0 +1,50 @@
+<header class="flex p-10 gap-4 justify-between
+" role="banner">
+  <h2 class="header__title">
+    {{ shop.name | link_to: routes.root_url }}
+  </h2>
+
+  <div class="header__menu">
+    {% for link in section.settings.menu.links %}
+      {%- if link.linklist -%}
+        
+      {%- endif -%}
+      {{ link.title | link_to: link.url }}
+    {% endfor %}
+ 
+      {% comment %} deprecated {% for link in linklists.header-top-menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %} {% endcomment %}
+    
+  </div>
+
+  <div class="flex gap-4">
+    {% if shop.customer_accounts_enabled %}
+     <a href="{{ routes.account_url }}" class="flex  h-[30px]">
+      {{ 'icon-account.svg' | inline_asset_content }}
+    </a>
+    {% endif %}
+
+    <a class="flex  h-[30px]" href="{{ routes.cart_url }}">
+      {% if cart.item_count > 0 %}
+        <sup>{{ cart.item_count }}</sup>
+      {% endif %}
+
+      {{ 'icon-cart.svg' | inline_asset_content }}
+    </a>
+  </div>
+</header> 
+
+{% schema %}
+{
+  "name": "t:general.header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:settings.menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}
