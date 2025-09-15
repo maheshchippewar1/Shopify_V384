@@ -1,20 +1,25 @@
-<header class="flex bg-red-100 p-10 gap-4 justify-between
+<header class="flex bg-green-100 p-10 gap-4 justify-between
 " role="banner">
   <h2 class="header__title">
     {{ shop.name | link_to: routes.root_url }}
   </h2>
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {% if link.linklist %}
-        <div class="header__submenu">
-          {% for sublink in link.linklist.links %}
-            {{ sublink.title | link_to: sublink.url }}
-          {% endfor %}
-        </div>
-      {% endif %}
+  <div class="header__menu flex gap-4">
+    {% assign menu = section.settings.menu %}
+    {% if menu != blank %}
+      {% for link in linklists[section.settings.menu].links %}
+      <div class="flex relative   visible">
       {{ link.title | link_to: link.url }}
-    {% endfor %}
+      {% if link.links != blank %}
+      <ul class="absolute bg-white p-3 w-52 top-6 transform group-hover:scale-200 transition duration-150 ease-in-out origin-top shadow-lg">
+        {% for sublink in link.links %}
+        <li>{{ sublink.title | link_to: sublink.url }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      </div>
+      {% endfor %}
+    {% endif %}
  
       {% comment %} deprecated {% for link in linklists.header-top-menu.links %}
         <a href="{{ link.url }}">{{ link.title }}</a>
