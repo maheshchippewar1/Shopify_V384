@@ -6,9 +6,13 @@
 
   <div class="header__menu">
     {% for link in section.settings.menu.links %}
-      {%- if link.linklist -%}
-        
-      {%- endif -%}
+      {% if link.linklist %}
+        <div class="header__submenu">
+          {% for sublink in link.linklist.links %}
+            {{ sublink.title | link_to: sublink.url }}
+          {% endfor %}
+        </div>
+      {% endif %}
       {{ link.title | link_to: link.url }}
     {% endfor %}
  
