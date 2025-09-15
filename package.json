@@ -1,0 +1,17 @@
+{
+  "name": "shopify_v384",
+  "version": "1.0.0",
+  "description": "<h1 align=\"center\" style=\"position: relative;\">\r   Shopify 3.84.1 Scratch Theme\r </h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.13",
+    "express": "^5.1.0",
+    "tailwindcss": "^4.1.13"
+  }
+}
