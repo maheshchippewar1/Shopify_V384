@@ -1,6 +1,6 @@
-<header class="flex bg-green-100 p-10 gap-4 justify-between
+<header class="flex  p-10 gap-4 justify-between
 " role="banner">
-  <h2 class="header__title">
+  <h2 class="header__title font-semibold text-xl">
     {{ shop.name | link_to: routes.root_url }}
   </h2>
 
@@ -8,15 +8,33 @@
     {% assign menu = section.settings.menu %}
     {% if menu != blank %}
       {% for link in linklists[section.settings.menu].links %}
-      <div class="flex relative   visible">
-      {{ link.title | link_to: link.url }}
-      {% if link.links != blank %}
-      <ul class="absolute bg-white p-3 w-52 top-6 transform group-hover:scale-200 transition duration-150 ease-in-out origin-top shadow-lg">
-        {% for sublink in link.links %}
-        <li>{{ sublink.title | link_to: sublink.url }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+      <div class="flex relative group" style="overflow: visible;">
+        <button class="flex items-center">
+          {{ link.title | link_to: link.url }}
+          {% comment %} {% if link.links != blank %}
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              class="h-4 w-4 ml-1 transform transition-transform group-hover:rotate-180" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          {% endif %} {% endcomment %}
+        </button>
+
+        {% if link.links != blank %}
+        <ul 
+          class="absolute hidden group-hover:block bg-white p-3 w-52 top-full left-0 shadow-lg rounded-md z-50 transition-all duration-200 ease-in-out"
+        >
+          {% for sublink in link.links %}
+          <li class="py-2 hover:bg-gray-100 px-2 rounded-md">
+            {{ sublink.title | link_to: sublink.url }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </div>
       {% endfor %}
     {% endif %}
