@@ -14,7 +14,7 @@
     "header": {
       "type": "header",
       "settings": {
-        "menu": "customer-account-main-menu"
+        "menu": "header-top-menu"
       }
     }
   },
